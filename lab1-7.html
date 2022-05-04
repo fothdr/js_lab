@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <title>Лабораторные работы - Веб-технологии</title>
+    <script>
+        function separation() {
+            predm = new Array("математика","физика","история","русский");
+            tech = new Array();
+            gum = new Array();
+            tech=predm.slice(0,2);
+            gum=predm.slice(2,4);
+            document.writeln("<p>Точные науки: "+ tech +"</p>"); 
+            document.writeln("<p>Гуманитарные науки науки: "+ gum +"</p>"); 
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1 class="container__title">Лабораторная работа №1</h1>
+        <p class="container__info">Задание 7</p>
+        <a href="lab1-tasks.html" class="button"><span>Назад к заданиям</span></a>
+        <hr class="container__line">
+        <div class="container__task">
+            <p>Школьные предметы:</p>
+            <script>
+                separation();
+            </script>
+        </div>
+    </div>
+</body>
+</html>

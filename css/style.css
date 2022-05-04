@@ -95,3 +95,11 @@ body {
     width: 100%;
     opacity: 1;
 }
+
+.container__task {
+    background-color: #F5F6FE;
+    color: #000;
+    height: 60vh;
+    padding: 10px;
+    text-align: start;
+}

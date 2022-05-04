@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <title>Лабораторные работы - Веб-технологии</title>
+</head>
+<body>
+    <div class="container">
+        <h1 class="container__title">Лабораторная работа №1</h1>
+        <p class="container__info">Задание 4</p>
+        <a href="lab1-tasks.html" class="button"><span>Назад к заданиям</span></a>
+        <hr class="container__line">
+        <div class="container__task">
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nam minus assumenda adipisci inventore aliquid architecto.</p>
+            <script>
+                let x, y;
+                x=parseInt(prompt("Введите значение х",'')); // метод parseInt() переводит строку в целое число
+                y=parseInt(prompt("Введите значение у",'')); // число
+                if (x<y) {
+                    alert(" Максимальное число - y");
+                } else if (x === y) {
+                    alert(" Введенные числа равны!");
+                } else {
+                    alert(" Максимальное число - x");
+                }
+
+                let correctPassword = 'admin12345';
+                if (prompt('Введите пароль:') == correctPassword) {
+                    alert('Пароль верный!');
+                } else {
+                    alert('Пароль неверный!');
+                }
+            </script>
+        </div>
+    </div>
+</body>
+</html>
