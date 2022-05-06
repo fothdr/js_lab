@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"></script>
+    <title>Лабораторные работы - Веб-технологии</title>
+</head>
+<body>
+    <div class="container">
+        <h1 class="container__title">Лабораторная работа №2</h1>
+        <p class="container__info">Задание 7</p>
+        <a href="lab2-tasks.html" class="button"><span>Назад к заданиям</span></a>
+        <hr class="container__line">
+        <div class="container__task">
+            <div id="calculator">
+                <div id="result"></div>
+                <span class="key">7</span>
+                <span class="key">8</span>
+                <span class="key">9</span>
+                <span class="key clear-key">C</span>
+                <span class="key">4</span>
+                <span class="key">5</span>
+                <span class="key">6</span>
+                <span class="key">/</span>
+                <span class="key">1</span>
+                <span class="key">2</span>
+                <span class="key">3</span>
+                <span class="key">*</span>
+                <span class="key">0</span>
+                <span class="key">+</span>
+                <span class="key equal-key">=</span>
+                <span class="key">-</span>
+            </div>
+            <script>
+                let displayValue = '0';   
+                $('#result').text(displayValue);
+
+                $('.key').each(function(index, key){       
+                    $(this).click(function(e){
+                        if(displayValue == '0') displayValue = '';
+                        if($(this).text() == 'C')
+                        {
+                            displayValue = '0';
+                            $('#result').text(displayValue);
+                        }
+                        else if($(this).text() == '=')
+                        {
+                            try
+                            {
+                                displayValue = eval(displayValue);
+                                $('#result').text(displayValue);
+                                displayValue = '0';
+                            }
+                            catch (e)
+                            {
+                                displayValue = '0';
+                                $('#result').text('ERROR');
+                            }               
+                        }
+                        else
+                        {
+                            displayValue += $(this).text();
+                            $('#result').text(displayValue);
+                        }
+                        e.preventDefault()
+                    })
+                })
+            </script>
+            <style>
+                 #calculator {
+                    width: 170px;
+                    background-color: #484848;
+                    padding: 20px;
+                    border-radius: 10px;
+                }
+
+                #result {
+                    width: 155px;
+                    height: 35px;
+                    background-color: white;
+                    border-radius: 5px;
+                    margin-bottom: 15px;
+                    text-align: right;
+                    padding: 0px 5px 0px 5px;
+                    font-size: 25px;
+                }
+
+                .key {
+                    width: 35px;
+                    background-color: white;
+                    display: inline-block;
+                    margin: 3px 0px 8px 3px;
+                    vertical-align: bottom;
+                    text-align: center;
+                    padding: 5px 0px 5px 0px;
+                    font-weight: bold;
+                    border-radius: 4px;
+                    cursor: pointer;
+                   
+                }
+
+            </style>
+        </div>
+    </div>
+</body>
+</html>

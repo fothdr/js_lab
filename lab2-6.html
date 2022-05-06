@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"></script>
+    <title>Лабораторные работы - Веб-технологии</title>
+</head>
+<body>
+    <div class="container">
+        <h1 class="container__title">Лабораторная работа №2</h1>
+        <p class="container__info">Задание 6</p>
+        <a href="lab2-tasks.html" class="button"><span>Назад к заданиям</span></a>
+        <hr class="container__line">
+        <div class="container__task">
+            <h1>Опрос</h1>
+            <h2>Вы любите печенье?</h2>
+            <label for="yes">Да</label>
+            <input type="radio" id="yes" name="radio" value="1">
+            <br>
+            <label for="no">Нет</label>
+            <input type="radio" id="no" name="radio" value="2">
+            <br>
+            <input type="button" id="send" value="Отправить" style="padding: 10px;">
+            <br>
+            <br>
+            <p id="yes-stat"> </p>
+            <p id="no-stat"> </p>
+            <script>
+            
+            $(document).ready(function () {
+                let yes = 0;
+                let no = 0;
+                $("#send").on("click", function () {
+                    let answer = $("input[name='radio']:checked").val();
+                    if (answer == "1") {
+                        yes++;
+                    } else if (answer == "2") {
+                        no++;
+                    }
+                    allAns=yes+no;
+                    yesStat=yes/allAns*100;
+                    noStat=no/allAns*100;
+                    $("#yes-stat").html('Количество людей, которые выбрали вариант "ДА": ' + yesStat.toFixed() + '%');
+                    $("#no-stat").html('Количество людей, которые выбрали вариант "НЕТ": ' + noStat.toFixed() + '%');
+                });
+            });
+            </script>
+            <style>
+                .container__task label {
+                    font-size: 25px;
+                }
+            </style>
+        </div>
+    </div>
+</body>
+</html>

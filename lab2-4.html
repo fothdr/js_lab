@@ -8,18 +8,25 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"></script>
     <title>Лабораторные работы - Веб-технологии</title>
 </head>
 <body>
     <div class="container">
-        <h1 class="container__title">Лабораторные работы</h1>
-        <p class="container__info">Никитин Александр - ПИ-322</p>
-        <a href="https://github.com/fothdr/js_lab" target="_blank" class="button"><span>Ссылка на репозиторий</span></a>
+        <h1 class="container__title">Лабораторная работа №2</h1>
+        <p class="container__info">Задание 4</p>
+        <a href="lab2-tasks.html" class="button"><span>Назад к заданиям</span></a>
         <hr class="container__line">
-        <ul class="container__lab-list">
-            <li><a href="lab1-tasks.html">Лабораторная работа №1</a></li>
-            <li><a href="lab2-tasks.html">Лабораторная работа №2</a></li>
-        </ul>
+        <div class="container__task">
+            <script>
+             $(document).mousemove(function(e){
+                $(".container__task").html("<h1>Координаты курсора: X: " + e.pageX + ", Y: " + e.pageY + "</h1>");
+            }); 
+            </script>
+        </div>
     </div>
 </body>
 </html>

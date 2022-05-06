@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"></script>
+    <title>Лабораторные работы - Веб-технологии</title>
+</head>
+<body>
+    <div class="container">
+        <h1 class="container__title">Лабораторная работа №2</h1>
+        <p class="container__info">Задание 2</p>
+        <a href="lab2-tasks.html" class="button"><span>Назад к заданиям</span></a>
+        <hr class="container__line">
+        <div class="container__task">
+            <form>
+                <label for="name">Ваше имя:</label>
+                <input type="text" id="name" name="name" class="" required placeholder="Введите имя">
+                <br>
+                <label for="password">Пароль:</label>
+                <input type="password" id="password" name="password" required placeholder="Введите пароль">
+                <br>
+                <label for="password-confirm">Подтверждение пароля:</label>
+                <input type="password" id="password-confirm" name="password-cofirm" required placeholder="Введите пароль">
+                <br>
+                <label for="email">Email:</label>
+                <input type="email" id="email" required placeholder="Введите email">
+                <br>
+                <label for="theme">Тема сообщения:</label>
+                <input type="text" id="theme" name="theme" placeholder="Введите тему сообщения">
+                <br>
+                <label for="message">Сообщение:</label>
+                <textarea id="message" name="message" placeholder="Введите сообщение"></textarea>
+                <br>
+                <input type="button" value="Отправить" id="send">
+                <input type="reset" value="Очистить" id="reset">
+            </form>
+            <script>
+            $(document).ready(function () {
+                function checkName() {
+                    let name = String($('#name').val());
+                    if (name.length < 4) {
+                        $('#name').addClass('wrong');
+                        return "Ошибка! Имя: требование (Минимальное кол-во символов: 4)";
+                    }
+                    return ''; 
+                }
+
+                function checkPassword() {
+                    let pass = String($('#password').val());
+                    if (pass.length < 4) {
+                        $('#password').addClass('wrong');
+                        return "Ошибка! Пароль: требование (Минимальное кол-во символов: 4)";
+                    }
+                    return ''; 
+                }
+
+                function checkPasswordConfirm() {
+                    let pass = String($('#password-confirm').val());
+                    if (pass.length < 4) {
+                        $('#password-confirm').addClass('wrong'); 
+                        return "Ошибка! Пароль: требование (Минимальное кол-во символов: 4)";
+                    }
+                    return ''; 
+                }
+
+                function checkPasswordIsEqual() {
+                    let psw = String($('#password').val());
+                    let pswConf = String($('#password-confirm').val());
+                    if (!(psw===pswConf) && (psw.length>=4) && (pswConf.length>=4)) {
+                        $('#password').addClass('wrong');
+                        $('#password-confirm').addClass('wrong'); 
+                        return "Пароли не совпадают";
+                    }
+                    return ''; 
+                }
+
+                function checkEmail() {
+                    let email = String($('#email').val());
+                    if ((email.length==0)) {
+                        $('#email').addClass('wrong'); 
+                        return `Введите корректный email `;
+                    }
+                    if (!(email.includes('@'))) {
+                        $('#email').addClass('wrong'); 
+                        return `Введите @ `;
+                    }
+                    return ''; 
+                }
+
+                function checkMessage() {
+                    let msg = String($("#message").val());
+                    if ((msg.length < 10)) {
+                        $('#message').addClass('wrong'); 
+                        return "Поле сообщения содержит Менее 10 символов!";
+                    }
+                    return ''; 
+                }
+
+                $("#send").on("click", function () {
+                    let a = String(`${checkName()} ${checkPassword()} ${checkPasswordConfirm()} ${checkPasswordIsEqual()} ${checkEmail()} ${checkMessage()}`);
+                    console.log(a.length);
+                    if (a.length > 5) {
+                        alert(a); 
+                    }
+                });
+            });
+            </script>
+            <style>
+                .wrong {
+                    border-color: red;
+                }
+            </style>
+        </div>
+    </div>
+</body>
+</html>
