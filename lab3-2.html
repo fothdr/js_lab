@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"></script>
+    <title>Лабораторные работы - Веб-технологии</title>
+</head>
+<body>
+    <div class="container">
+        <h1 class="container__title">Лабораторная работа №3</h1>
+        <p class="container__info">Задание 2 (Отзывы)</p>
+        <a href="lab3-tasks.html" class="button"><span>Назад к заданиям</span></a>
+        <hr class="container__line">
+        <div class="container__task">
+           <form id="feedbackForm">      
+              <input name="name" type="text" class="feedback-input" placeholder="Имя" required/>   
+              <input name="email" type="text" class="feedback-input" placeholder="Email" required/>
+              <textarea name="text" class="feedback-input" placeholder="Отзыв" required></textarea>
+              <img src="img/loader.gif" alt="loading" class="loader" style="display: none;"/>
+              <input type="submit" value="Отправить" id="submitBtn"/>
+            </form>
+            
+            <div class="feedbacks" id="feedbackList">
+                <h3>Список отзывов</h2>
+                <img src="img/loader.gif" alt="loading" class="loader2" style="display: none;"/>
+                
+            </div>
+        </div>
+    </div>
+    <style>
+    .feedbacks {
+        margin-top: 40px;
+        color: white;
+        text-align: center;
+        
+    }
+    
+    .feedbacks__item {
+        display:flex;
+        text-align: start;
+        margin-top: 20px;
+        padding: 10px;
+        border: 2px solid #CC4949;
+        border-radius: 5px;
+    }
+    .feedbacks__item>div {
+        width: 150px;
+    }
+    .feedbacks__item>div>p {
+        font-size: 10px;
+    }
+        .container__task {
+            background-color: inherit;
+        }
+               .feedback-input {
+                  color:white;
+                  font-family: 'Roboto', sans-serif;
+                  font-weight:500;
+                  font-size: 18px;
+                  border-radius: 5px;
+                  line-height: 22px;
+                  background-color: transparent;
+                  border:2px solid #CC6666;
+                  transition: all 0.3s;
+                  padding: 13px;
+                  margin-bottom: 15px;
+                  width:100%;
+                  box-sizing: border-box;
+                  outline:0;
+                }
+                
+                .feedback-input:focus { border:2px solid #CC4949; }
+                
+                textarea {
+                  height: 150px;
+                  line-height: 150%;
+                  resize:vertical;
+                }
+                
+                [type="submit"] {
+                  font-family: 'Roboto', sans-serif;
+                  width: 100%;
+                  background:#CC6666;
+                  border-radius:5px;
+                  border:0;
+                  cursor:pointer;
+                  color:white;
+                  font-size:24px;
+                  padding-top:10px;
+                  padding-bottom:10px;
+                  transition: all 0.3s;
+                  margin-top:-4px;
+                  font-weight:700;
+                }
+                [type="submit"]:hover { background:#CC4949; }
+        </style>
+        <script>
+            $(document).ready(function() {
+            $.ajax(
+               {
+                   url: "getdata_3-2.php",
+                   beforeSend: function(){
+                    $('.loader2').show()
+                   },
+                   complete: function(){
+                       $('.loader2').hide();
+                   },
+                   success: function (result) {
+                       let x = JSON.parse(result);
+                       
+                       for (let i = 0; i  < x.length; i++) {
+                           $('#feedbackList').append('<div class="feedbacks__item">'+
+                    '<div><h4>'+x[i].name+'</h4>'+
+                    '<p>'+x[i].email+'</p>'+
+                    '</div>'+
+                    '<p>'+x[i].message+'</p>'+
+                '</div>');
+                       }
+                   }
+               } 
+            );});
+            $('#feedbackForm').submit(function(e) {
+                e.preventDefault();
+                let th=$(this);
+                $('.loader').show()
+                $('#submitBtn').hide()
+                
+                $.ajax({
+                    url: 'setdata_3-2.php',
+                    type: 'POST',
+                    data: th.serialize(),
+                    success: function(result){
+                        $('.loader').hide()
+                        $('#submitBtn').show()
+                        alert(result);
+                        setTimeout(function() {
+                            th.trigger('reset');
+                        },1500)
+                    }
+                })
+            })
+        </script>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"></script>
+    <title>Лабораторные работы - Веб-технологии</title>
+</head>
+<body>
+    <div class="container">
+        <h1 class="container__title">Лабораторная работа №3</h1>
+        <p class="container__info">Задание 1 (Новости)</p>
+        <a href="lab3-tasks.html" class="button"><span>Назад к заданиям</span></a>
+        <hr class="container__line">
+        <div class="container__task" id="news">
+            <img src="img/loader.gif" alt="loading" class="loader"/>
+        </div>
+        <a href="#" class="button" id="more-news"><span>Показать еще</span></a>
+    </div>
+    <style>
+        .container {
+            max-width: 1200px;
+        }
+        .container__task {
+            display: flex;
+            height: inherit;
+            justify-content: center;
+            flex-wrap: wrap;
+            background-color: inherit;
+            
+        }
+        .card {
+            margin: 10px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 15px rgba(71, 40, 244, 0.389);
+            overflow: hidden;
+            width: 200px;
+            display: flex;
+            flex-wrap: wrap;
+            height: 370px;
+        }
+        .card-header img {
+            width: 100%;
+            height: 135px;
+            object-fit: cover;
+        }
+        .card-body {
+            display: flex;
+            flex-direction: column;
+            
+            padding: 20px;
+            min-height: 150px;
+        }
+
+        .tag {
+            background: #cccccc;
+            border-radius: 50px;
+            font-size: 12px;
+            margin: 0;
+            color: #fff;
+            padding: 2px 10px;
+            text-transform: uppercase;
+            cursor: pointer;
+            margin-bottom: 10px;
+            background-color: #3C50FA;
+        }
+
+        .card-body p {
+            font-size: 13px;
+            margin: 0 0 40px;
+        }
+
+    </style>
+    <script>
+        $(document).ready(function() {
+            let kol = 5;
+            let tek = 0;
+            $.ajax(
+               {
+                   url: "getdata_3-1.php",
+                   type: "POST",
+                   data: {kol: kol, tek: tek},
+                   beforeSend: function(){
+                    $('.loader').show()
+                   },
+                   complete: function(){
+                       $('.loader').hide();
+                   },
+                   success: function (result) {
+                       let x = JSON.parse(result);
+                       
+                       for (let i = 0; i  < x.length; i++) {
+                           $('#news').append('<div class="card">'+
+                            '<div class="card-header">'+
+                              '<img src="'+x[i].image+'" alt="rover" /></div>'+
+                            '<div class="card-body">' +
+                              '<span class="tag tag-teal">'+x[i].category+'</span>'+
+                              '<h4>'+x[i].title+'</h4>'+
+                              '<p>'+x[i].descrip+'</p>' +
+                            '</div></div>');
+                       }
+                   }
+               } 
+            );
+            tek = 5;
+            $('#more-news').click(function () {
+                $.ajax(
+               {
+                   url: "getdata_3-1.php",
+                   type: "POST",
+                   data: {kol: kol, tek: tek},
+                   success: function (result) {
+                       let x = JSON.parse(result);
+                       
+                       for (let i = 0; i  < x.length; i++) {
+                           $('#news').append('<div class="card">'+
+                            '<div class="card-header">'+
+                              '<img src="'+x[i].image+'" alt="rover" /></div>'+
+                            '<div class="card-body">' +
+                              '<span class="tag tag-teal">'+x[i].category+'</span>'+
+                              '<h4>'+x[i].title+'</h4>'+
+                              '<p>'+x[i].descrip+'</p>' +
+                            '</div></div>');
+                       }
+                   }
+               } 
+            );
+            tek += 5;
+            });
+            
+        });
+    </script>
+</body>
+</html>
