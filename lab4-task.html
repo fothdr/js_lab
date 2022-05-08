@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="ui/jquery-ui.min.css">
+    <script
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"></script>
+    <script src="ui/jquery-ui.min.js"></script>
+    <title>Лабораторные работы - Веб-технологии</title>
+</head>
+<body>
+    <div class="container">
+        <h1 class="container__title">Лабораторная работа №4</h1>
+        <p class="container__info">Вариант 1 (по списку 15) - товары</p>
+        <a href="index.html" class="button"><span>Назад к лабораторным</span></a>
+        <hr class="container__line">
+        <div class="container__task">
+            <div id="tabs">
+                <ul>
+                  <li><a href="#tabs-1">Мужская обувь</a></li>
+                  <li><a href="#tabs-2">Женская обувь</a></li>
+                </ul>
+                <div id="tabs-1">
+                  <div class="card">
+                    <div class="card-header">
+                      <img src="https://images.pexels.com/photos/8546512/pexels-photo-8546512.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="rover" />
+                    </div>
+                    <div class="card-body">
+                      <span class="tag tag-teal">Спортивная</span>
+                      <h4>
+                        New Balance 550
+                      </h4>
+                      <h3><i>4 490</i>  </h3>
+                      
+                      <p>
+                        Для всех поклонников New Balance и ценителей винтажных моделей мы рады представить модель 550! 
+                      </p>
+                      <button class="buyBtn" id="buyBtn" data-price="4490" data-name="New Balance 550">Купить</button>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <div class="card-header">
+                      <img src="https://images.pexels.com/photos/11239249/pexels-photo-11239249.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="rover" />
+                    </div>
+                    <div class="card-body">
+                      <span class="tag tag-teal">Повседневная</span>
+                      <h4>
+                        Adidas Breaknet
+                      </h4>
+                      <h3><i>5 490</i>  </h3>
+                      <p>
+                        Эти кроссовки, вдохновленные теннисом, станут главным козырем твоего стиля. Классические повседневные.
+                      </p>
+                      <button class="buyBtn" id="buyBtn" data-price="5490" data-name="Adidas Breaknet">Купить</button>
+                    </div>
+                  </div>
+                </div>
+                <div id="tabs-2">
+                  <div class="card">
+                    <div class="card-header">
+                      <img src="https://newbalance.ru/upload/iblock/608/uxc72op1_nb_02_i.jpg" alt="rover" />
+                    </div>
+                    <div class="card-body">
+                      <span class="tag tag-teal">Повседневная</span>
+                      <h4>
+                        New Balance XC-72
+                      </h4>
+                      <h3><i>6 490</i>  </h3>
+                      <p>
+                        В основу серии моделей XC-72 Future Legacy легли архивные силуэты спортивной обуви 70-х годов.
+                      </p>
+                      <button class="buyBtn" id="buyBtn"  data-price="6490" data-name="New Balance XC-72">Купить</button>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <div class="card-header">
+                      <img src="https://newbalance.ru/upload/resize_cache/iblock/e5a/992_992_2/w1080b11_nb_02_i.jpg" alt="rover" />
+                    </div>
+                    <div class="card-body">
+                      <span class="tag tag-teal">Спортивная</span>
+                      <h4>
+                        New Balance Fresh Foam
+                      </h4>
+                      <h3><i>7 590</i>  </h3>
+                      <p>
+                        Флагман линейки и многолетный бестселлер — Fresh Foam 1080 — это многофункциональные кроссовки.
+                      </p>
+                      <button class="buyBtn" id="buyBtn" data-price="7590" data-name="New Balance Fresh Foam">Купить</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+        <div id="dialog" class="dialog-window">
+          <label for="fio">Введите ФИО</label>
+          <input type="text" name="fio" id="fio" size="40">
+          <p>
+            <label for="amount">Количество товара:</label>
+            <input type="text" name="amount" id="amount" value="1" readonly style="border:0; color:#f6931f; font-weight:bold;">
+            <div id="slider"></div>
+          </p>
+          <p>Выберите дату доставки: <input type="text" id="datepicker" size="30"></p>
+          <fieldset>
+            <legend>Выберите тип доставки**: </legend>
+            <label for="radio-1"  title="Коэф. обычной доставки: 1, коэф. ускоренной: 1.15" >Обычная</label>
+            <input type="radio" name="radio-1" id="radio-1" value="1" checked>
+            <label for="radio-2"  title="Коэф. обычной доставки: 1, коэф. ускоренной: 1.15" >Ускоренная</label>
+            <input type="radio" name="radio-1" id="radio-2" value="1.15">
+          </fieldset>
+          <label for="city">Выберите свой город из списка:</label>
+          <select name="city" id="city">
+            <option selected="selected">Уфа</option>
+            <option>Казань</option>
+            <option>Москва</option>
+          </select>
+          <label for="address" title="Начните писать название города">Выберите адрес доставки**: </label>
+          <input id="address">
+          <label for="finalPrice">Итоговая цена:</label>
+          <input type="text" id="finalPrice" readonly style="border:0; color:#f6931f; font-weight:bold;" value="1">
+          <button class="confOrder" id="confOrder">Оформить заказ</button>
+          <small>**элементы с 2 звездочками имеют подсказки</small>
+          
+        </div>
+        <div id="dialog-confirm" title="Подтвердить заказ?">
+          <p><span style="float:left; margin:12px 12px 20px 0;"></span>Вы соглашаетесь с условиями договора и подтверждаете заказ?</p>
+        </div>
+        <div id="dialog-message" title="Заказ оформлен!">
+          <p>
+            <span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span>
+            Спасибо за заказ!
+          </p>
+          <p>
+            Оставьте отзыв и <b>получите скидку от менеджера!</b>.
+          </p>
+        </div>
+    </div>
+    <style>
+        .container {
+            max-width: 800px;
+        }
+        .container__task {
+            background-color: inherit;
+        }
+        #tabs {
+            color: white;
+        }
+        #tabs>div {
+          display: flex;
+          justify-content: space-around;
+        }
+        #fio {
+          padding: 10px;
+        }
+        .dialog-window {
+          display: flex;
+          flex-direction: column;
+          gap: 15px;
+        }
+        .card {
+          margin: 10px;
+          background-color: #fff;
+          border-radius: 10px;
+          overflow: hidden;
+          width: 300px;
+          height: 420px;
+          color: black;
+          border: 2px solid orange;
+        }
+        .card-header img {
+          width: 100%;
+          height: 200px;
+          object-fit: cover;
+        }
+        .card-body {
+          display: flex;
+          flex-direction: column;
+         
+          align-items: flex-start;
+          padding: 20px;
+          min-height: 250px;
+        }
+        .tag {
+          background: #cccccc;
+          border-radius: 50px;
+          font-size: 12px;
+          margin: 0;
+          color: #fff;
+          padding: 2px 10px;
+          text-transform: uppercase;
+          cursor: pointer;
+          margin-bottom: 10px;
+        }
+        .tag-teal {
+          background-color: orange;
+        }
+
+        .card-body p {
+          font-size: 13px;
+          margin-bottom: 10px;
+        }
+
+
+    </style>
+    <script>
+        $( function() {
+          let price = 1;
+          $( "#tabs" ).tabs();
+          $('input').addClass("ui-corner-all");
+          $( ".buyBtn, .confOrder").button();
+          $( ".buyBtn" ).on( "click", function() {
+            $( "#dialog" ).dialog("open");
+            $( "#dialog" ).dialog("option", "title", "Оформить заказ на " + $(this).data('name'));
+            price = $(this).data('price');
+            $("#finalPrice").val(price);
+          });
+         
+         
+          $( "#dialog" ).dialog({
+            autoOpen: false,
+            width: 470,
+            height: 730,
+            show: {
+              effect: "blind",
+              duration: 1000
+            },
+            hide: {
+              effect: "explode",
+              duration: 1000
+            },
+          });
+          $( "#slider" ).slider({
+            value:1,
+            min: 1,
+            max: 10,
+            step: 1,
+            slide: function( event, ui ) {
+              $( "#amount" ).val( ui.value );
+            },
+            change: function( event, ui ) {
+              $("#finalPrice").val((price * $("#amount").val() * $('input[name="radio-1"]:checked').val()).toFixed(2));
+            },
+          });
+          $( "#amount" ).val( $( "#slider" ).slider( "value" ) );
+          $( "#datepicker" ).datepicker();
+          $( "#anim" ).on( "change", function() {
+            $( "#datepicker" ).datepicker( "option", "showAnim", $( this ).val() );
+          });
+          $( "#radio-1, #radio-2" ).checkboxradio();
+          $( "#city" ).selectmenu();
+          let availableAddress = [
+            "Уфа, Ленина 24",
+            "Москва, Жукова 31",
+            "Казань, проспект Мира 11",
+          ];
+          $( "#address" ).autocomplete({
+            source: availableAddress
+          });
+          $('input[type=radio][name=radio-1]').change( function() {
+            $("#finalPrice").val((price * $("#amount").val() * $('input[name="radio-1"]:checked').val()).toFixed(2));
+          });
+          
+          $( document ).tooltip({
+            track: true
+          });
+
+
+          $( "#confOrder" ).on( "click", function() {
+            $( "#dialog-confirm" ).dialog("open");
+          });
+          $( "#dialog-confirm" ).dialog({
+            autoOpen: false,
+            resizable: false,
+            height: "auto",
+            width: 400,
+            modal: true,
+            buttons: {
+              "Согласен": function() {
+                $( this ).dialog( "close" );
+                $( "#dialog-message" ).dialog("open");
+              },
+              "Не согласен": function() {
+                $( this ).dialog( "close" );
+              }
+            }
+          });
+          $( "#dialog-message" ).dialog({
+            autoOpen: false,
+            modal: true,
+            buttons: {
+              "Ок": function() {
+                $( this ).dialog( "close" );
+              }
+            }
+          });
+        } );
+          
+        
+        
+       
+        
+        
+        </script>
+</body>
+</html>
